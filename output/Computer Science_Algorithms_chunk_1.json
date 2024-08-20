@@ -66371,5 +66371,503 @@
         ]
       }
     ]
+  },
+  {
+    "name": "The Complete Python Bootcamp From Zero to Hero in Python",
+    "image": "https://img-c.udemycdn.com/course/240x135/567828_67d0.jpg",
+    "url": "https://www.udemy.com/course/complete-python-bootcamp/?couponCode=SKILLS4SALEA",
+    "price": "$9.99",
+    "short_desc": "Learn Python like a Professional  Start from the basics and go all the way to creating your own applications and games",
+    "long_desc": "DescriptionBecome a Python Programmer and learn one of employer's most requested skills of 2023!This is the most comprehensive, yet straight-forward, course for the Python programming language on Udemy! Whether you have never programmed before, already know basic syntax, or want to learn about the advanced features of Python, this course is for you! In this course we will teach you Python 3. With over 100 lectures and more than 21 hours of video this comprehensive course leaves no stone unturned! This course includes quizzes, tests, coding exercises and homework assignments as well as 3 major projects to create a Python project portfolio!Learn how to use Python for real-world tasks, such as working with PDF Files, sending emails, reading Excel files, Scraping websites for informations, working with image files, and much more!This course will teach you Python in a practical manner, with every lecture comes a full coding screencast and a corresponding code notebook! Learn in whatever manner is best for you!We will start by helping you get Python installed on your computer, regardless of your operating system, whether its Linux, MacOS, or Windows, we've got you covered.We cover a wide variety of topics, including:Command Line BasicsInstalling PythonRunning Python CodeStringsLists DictionariesTuplesSetsNumber Data TypesPrint FormattingFunctionsScopeargs/kwargsBuilt-in FunctionsDebugging and Error HandlingModulesExternal ModulesObject Oriented ProgrammingInheritancePolymorphismFile I/OAdvanced MethodsUnit Testsand much more!You will get lifetime access to over 100 lectures plus corresponding Notebooks for the lectures! This course comes with a 30 day money back guarantee! If you are not satisfied in any way, you'll get your money back. Plus you will keep access to the Notebooks as a thank you for trying out the course!So what are you waiting for? Learn Python in a way that will advance your career and increase your knowledge, all in a fun and practical way!Who this course is for:Beginners who have never programmed before.Programmers switching languages to Python.Intermediate Python programmers who want to level up their skills!Show moreShow less",
+    "user_rating": "4.6",
+    "user_rating_count": "(514,793 ratings)",
+    "language": "English",
+    "total_enrolled": "Rating: 4.6 out of 54.6 (514,793 ratings)1,947,201 students",
+    "vendor": "Udemy",
+    "prerequisites": [
+      "Access to a computer with an internet connection."
+    ],
+    "level": "N/A",
+    "time_to_complete": "N/A",
+    "category": "Computer Science",
+    "keyword": "Algorithms",
+    "provided_by": "Jose Portilla, Pierian Training",
+    "modules": [
+      {
+        "moduleName": "Course Overview",
+        "moduleLectureCount": "5 lectures • 19min",
+        "lessons": [
+          {
+            "lessonName": "Auto-Welcome Message",
+            "lessonTime": "00:44"
+          }
+        ]
+      },
+      {
+        "moduleName": "Python Setup",
+        "moduleLectureCount": "5 lectures • 54min",
+        "lessons": [
+          {
+            "lessonName": "Command Line Basics",
+            "lessonTime": "08:15"
+          }
+        ]
+      },
+      {
+        "moduleName": "Python Object and Data Structure Basics",
+        "moduleLectureCount": "21 lectures • 2hr 2min",
+        "lessons": [
+          {
+            "lessonName": "Introduction to Python Data Types",
+            "lessonTime": "04:02"
+          }
+        ]
+      },
+      {
+        "moduleName": "Python Comparison Operators",
+        "moduleLectureCount": "2 lectures • 9min",
+        "lessons": [
+          {
+            "lessonName": "Comparison Operators in Python",
+            "lessonTime": "03:26"
+          }
+        ]
+      },
+      {
+        "moduleName": "Python Statements",
+        "moduleLectureCount": "7 lectures • 1hr 15min",
+        "lessons": [
+          {
+            "lessonName": "If Elif and Else Statements in Python",
+            "lessonTime": "09:06"
+          }
+        ]
+      },
+      {
+        "moduleName": "Methods and Functions",
+        "moduleLectureCount": "18 lectures • 2hr 54min",
+        "lessons": [
+          {
+            "lessonName": "Methods and the Python Documentation",
+            "lessonTime": "07:04"
+          }
+        ]
+      },
+      {
+        "moduleName": "Milestone Project - 1",
+        "moduleLectureCount": "9 lectures • 1hr 40min",
+        "lessons": [
+          {
+            "lessonName": "Introduction to Warm Up Project Exercises",
+            "lessonTime": "03:47"
+          }
+        ]
+      },
+      {
+        "moduleName": "Object Oriented Programming",
+        "moduleLectureCount": "9 lectures • 1hr 21min",
+        "lessons": [
+          {
+            "lessonName": "Object Oriented Programming - Introduction",
+            "lessonTime": "04:52"
+          }
+        ]
+      },
+      {
+        "moduleName": "Modules and Packages",
+        "moduleLectureCount": "3 lectures • 29min",
+        "lessons": [
+          {
+            "lessonName": "Pip Install and PyPi",
+            "lessonTime": "07:46"
+          }
+        ]
+      },
+      {
+        "moduleName": "Errors and Exceptions Handling",
+        "moduleLectureCount": "6 lectures • 46min",
+        "lessons": [
+          {
+            "lessonName": "Errors and Exception Handling",
+            "lessonTime": "17:19"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "100 Days of Code: The Complete Python Pro Bootcamp",
+    "image": "https://img-c.udemycdn.com/course/240x135/2776760_f176_10.jpg",
+    "url": "https://www.udemy.com/course/100-days-of-code/?couponCode=SKILLS4SALEA",
+    "price": "$9.99",
+    "short_desc": "Master Python by building 100 projects in 100 days. Learn data science, automation, build websites, games and apps!",
+    "long_desc": "DescriptionWelcome to the 100 Days of Code - The Complete Python Pro Bootcamp, the only course you need to learn to code with Python. With over 500,000 5 STAR reviews and a 4.8 average, my courses are some of the HIGHEST RATED courses in the history of Udemy!  100 days, 1 hour per day, learn to build 1 project per day, this is how you master Python.At 60+ hours, this Python course is without a doubt the most comprehensive Python course available anywhere online. Even if you have zero programming experience, this course will take you from beginner to professional. Here's why:The course is taught by the lead instructor at the App Brewery, London's best in-person programming Bootcamp.The course has been updated and you'll be learning the latest tools and technologies used at large companies such as Apple, Google and Netflix.This course doesn't cut any corners, there are beautiful animated explanation videos and tens of real-world projects which you will get to build. e.g. Tinder auto swiper, Snake game, Blog Website, LinkedIn Auto Submit Job ApplicationThe curriculum was developed over a period of 2 years, with comprehensive student testing and feedback.We've taught over 600,000 students how to code and many have gone on to change their lives by becoming professional developers or starting their own tech startup.You'll save yourself over $12,000 by enrolling, and still get access to the same teaching materials and learn from the same instructor and curriculum as our in-person programming Bootcamp.The course is constantly updated with new content, with new projects and modules determined by students - that's you!We'll take you step-by-step through engaging video tutorials and teach you everything you need to know to succeed as a Python developer.The course includes over 65 hours of HD video tutorials and builds your programming knowledge while making real-world Python projects.Throughout this comprehensive course, we cover a massive amount of tools and technologies, including:Python 3 - the latest version of PythonPyCharm, Jupyter Notebook, Google ColabPython Scripting and AutomationPython Game DevelopmentWeb ScrapingBeautiful SoupSelenium Web DriverRequestWTFormsData SciencePandasNumPyMatplotlibPlotlyScikit learnSeabornTurtlePython GUI Desktop App DevelopmentTkinterFront-End Web DevelopmentHTML 5CSS 3Bootstrap 4Bash Command LineGit, GitHub and Version ControlBackend Web DevelopmentFlaskRESTAPIsDatabasesSQLSQLitePostgreSQLAuthenticationWeb DesignDeployment with GitHub Pages, Heroku and GUnicornand much much more!By the end of this course, you will be fluently programming in Python and you'll be so good at Python that you can get a job or use the language professionally.You'll also build a portfolio of 100 projects that you can show off to any potential employer. Including:BlackjackSnake GamePong GameAuto Swipe on TinderAuto Job Applications on LinkedInAutomate Birthday Emails/SMSFully Fledged Blog WebsiteBuild Your Own Public APIData Science with Google TrendsAnalysing Lego DatasetsGoogle App Store Analysisand much much more!Sign up today, and look forward to:Video LecturesCode Challenges and ExercisesFully Fledged ProjectsQuizzesProgramming Resources and CheatsheetsDownloadsOur best selling 12 Rules to Learn to Code eBook$12,000+ Python Pro Bootcamp course materials and curriculumDon't just take my word for it, check out what existing students have to say about my courses:\"Angela is just incredible, awesome and just fantastic in this course. I've never had such an instructor; detailed in every aspect of the course, gives precise explanations, gives you the anxiety to learn etc. She's got that ability to make fun while explaining things for better understanding. I really love this course.\" - Ekeu MonkamUlrich\"Angela is very thorough without ever being boring. I've taken MANY online courses in my life including my Bachelors and Masters degrees. She is by far the best instructor I've ever had. This course is packed with thousands of dollars worth of great instruction, and paced well enough for anyone to pick coding up and run with it- Thank you!\" - J Carlucci\"Love the way Angela explains things. Easy to follow and full of logic. I can say she must spend a lot of energy creating this great course. Thank you and I recommend it to all who's interested in coding!\" - Yiqing Zheng\"So far (on my third day) this course has taught me more than I was able to learn in multiple other programming courses. This course is clearly outlined and builds upon itself gradually in an easy to understand way.\" - Normal Ramsey\"It's a different approach to teaching Web Development. I like that you are given everything possible to succeed from the onset.\" - Ronick ThomasThe tutor is simply AMAZING, by far the best tutor I have ever had. I would give her 10 stars out of 5. She is not just punching the code and talking to herself, but she is actually explaining things. She keeps on giving really useful hints and she will give you a great load of other references. I always knew what I was doing and why I was doing it. All the extra challenges have just made me remember and understand things better. - Peter DlugosREMEMBER… I'm so confident that you'll love this course that we're offering a FULL money-back guarantee for 30 days! So it's a complete no-brainer, sign up today with ZERO risk and EVERYTHING to gain.So what are you waiting for? Click the buy now button and join the world's highest-rated development course.Who this course is for:If you want to learn to code from scratch through building fun and useful projects, then take this course.If you want to start your own startup by building your own websites and web apps.If you are a complete beginner then this course will be everything you need to become a Python professionalIf you are a seasoned programmer wanting to switch to Python then this is the quickest way. Learn through coding projects.If you are an intermediate Python programmer then you know 100 days of code challenges will help you level up.Show moreShow less",
+    "user_rating": "4.7",
+    "user_rating_count": "(316,714 ratings)",
+    "language": "English",
+    "total_enrolled": "Bestseller",
+    "vendor": "Udemy",
+    "prerequisites": [
+      "No programming experience needed - I'll teach you everything you need to know",
+      "A Mac or PC computer with access to the internet",
+      "No paid software required - I'll teach you how to use PyCharm, Jupyter Notebooks and Google Colab",
+      "I'll walk you through, step-by-step how to get all the software installed and set up"
+    ],
+    "level": "N/A",
+    "time_to_complete": "N/A",
+    "category": "Computer Science",
+    "keyword": "Algorithms",
+    "provided_by": "Dr. Angela Yu, Developer and Lead Instructor",
+    "modules": [
+      {
+        "moduleName": "Day 1 - Beginner - Working with Variables in Python to Manage Data",
+        "moduleLectureCount": "12 lectures • 1hr 12min",
+        "lessons": [
+          {
+            "lessonName": "What you're going to get from this course",
+            "lessonTime": "03:27"
+          }
+        ]
+      },
+      {
+        "moduleName": "Day 2 - Beginner - Understanding Data Types and How to Manipulate Strings",
+        "moduleLectureCount": "7 lectures • 58min",
+        "lessons": [
+          {
+            "lessonName": "Day 2 Goals: what we will make by the end of the day",
+            "lessonTime": "01:46"
+          }
+        ]
+      },
+      {
+        "moduleName": "Day 3 - Beginner - Control Flow and Logical Operators",
+        "moduleLectureCount": "10 lectures • 1hr 16min",
+        "lessons": [
+          {
+            "lessonName": "Day 3 Goals: what we will make by the end of the day",
+            "lessonTime": "01:22"
+          }
+        ]
+      },
+      {
+        "moduleName": "Day 4 - Beginner - Randomisation and Python Lists",
+        "moduleLectureCount": "7 lectures • 1hr 4min",
+        "lessons": [
+          {
+            "lessonName": "Day 4 Goals: what we will make by the end of the day",
+            "lessonTime": "01:31"
+          }
+        ]
+      },
+      {
+        "moduleName": "Day 5 - Beginner - Python Loops",
+        "moduleLectureCount": "6 lectures • 41min",
+        "lessons": [
+          {
+            "lessonName": "Day 5 Goals: what we will make by the end of the day",
+            "lessonTime": "03:13"
+          }
+        ]
+      },
+      {
+        "moduleName": "Day 6 - Beginner - Python Functions & Karel",
+        "moduleLectureCount": "9 lectures • 1hr 23min",
+        "lessons": [
+          {
+            "lessonName": "Day 6 Goals: what we will make by the end of the day",
+            "lessonTime": "01:01"
+          }
+        ]
+      },
+      {
+        "moduleName": "Day 7 - Beginner - Hangman",
+        "moduleLectureCount": "8 lectures • 58min",
+        "lessons": [
+          {
+            "lessonName": "Day 7 Goals: what we will make by the end of the day",
+            "lessonTime": "02:03"
+          }
+        ]
+      },
+      {
+        "moduleName": "Day 8 - Beginner - Function Parameters & Caesar Cipher",
+        "moduleLectureCount": "7 lectures • 1hr 5min",
+        "lessons": [
+          {
+            "lessonName": "Day 8 Goals: what we will make by the end of the day",
+            "lessonTime": "02:15"
+          }
+        ]
+      },
+      {
+        "moduleName": "Day 9 - Beginner - Dictionaries, Nesting and the Secret Auction",
+        "moduleLectureCount": "5 lectures • 50min",
+        "lessons": [
+          {
+            "lessonName": "Day 9 Goals: what we will make by the end of the day",
+            "lessonTime": "02:26"
+          }
+        ]
+      },
+      {
+        "moduleName": "Day 10 - Beginner - Functions with Outputs",
+        "moduleLectureCount": "6 lectures • 55min",
+        "lessons": [
+          {
+            "lessonName": "Day 10 Goals: what we will make by the end of the day",
+            "lessonTime": "01:34"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Automate the Boring Stuff with Python Programming",
+    "image": "https://img-c.udemycdn.com/course/240x135/543600_64d1_4.jpg",
+    "url": "https://www.udemy.com/course/automate/?couponCode=SKILLS4SALEA",
+    "price": "$9.99",
+    "short_desc": "A practical programming course for office workers, academics, and administrators who want to improve their productivity.",
+    "long_desc": "DescriptionIf you're an office worker, student, administrator, or just want to become more productive with your computer, programming will allow you write code that can automate tedious tasks. This course follows the popular (and free!) book, Automate the Boring Stuff with Python.Automate the Boring Stuff with Python was written for people who want to get up to speed writing small programs that do practical tasks as soon as possible. You don't need to know sorting algorithms or object-oriented programming, so this course skips all the computer science and concentrates on writing code that gets stuff done.This course is for complete beginners and covers the popular Python programming language. You'll learn basic concepts as well as:Web scrapingParsing PDFs and Excel spreadsheetsAutomating the keyboard and mouseSending emails and textsAnd several other practical topics By the end of this course, you'll be able to write code that not only dramatically increases your productivity, but also be able to list this fun and creative skill on your resume.Who this course is for:Office workers, students, small/home business workers, and administrators would want to improve their productivity.Aspiring software engineers who want to add skills to their programming toolbelt.Computer users who have heard the \"learn to code\" message, but want practical reasons to learn programming.Experienced Python software engineers can skip the first half of the course, but may find the later parts that cover various third-party modules helpful.While this course doesn't cover specific devops tools, this course would be useful for QA, devops, and admins who want to learn scripting in Python.Show moreShow less",
+    "user_rating": "4.7",
+    "user_rating_count": "(113,795 ratings)",
+    "language": "English",
+    "total_enrolled": "Rating: 4.7 out of 54.7 (113,795 ratings)1,130,898 students",
+    "vendor": "Udemy",
+    "prerequisites": [
+      "No programming experience is required.",
+      "Downloading and installing Python is covered at the start of the course.",
+      "Basic computer skills: surfing websites, running programs, saving and opening documents, etc."
+    ],
+    "level": "N/A",
+    "time_to_complete": "N/A",
+    "category": "Computer Science",
+    "keyword": "Algorithms",
+    "provided_by": "Al Sweigart",
+    "modules": [
+      {
+        "moduleName": "Python Basics",
+        "moduleLectureCount": "3 lectures • 27min",
+        "lessons": [
+          {
+            "lessonName": "Get Python Installed",
+            "lessonTime": "05:39"
+          }
+        ]
+      },
+      {
+        "moduleName": "Flow Control",
+        "moduleLectureCount": "4 lectures • 35min",
+        "lessons": [
+          {
+            "lessonName": "Flow Charts and Basic Flow Control Concepts",
+            "lessonTime": "07:36"
+          }
+        ]
+      },
+      {
+        "moduleName": "Functions",
+        "moduleLectureCount": "3 lectures • 31min",
+        "lessons": [
+          {
+            "lessonName": "Python's Built-In Functions",
+            "lessonTime": "06:19"
+          }
+        ]
+      },
+      {
+        "moduleName": "Handling Errors with try/except",
+        "moduleLectureCount": "1 lecture • 7min",
+        "lessons": [
+          {
+            "lessonName": "Try and Except Statements",
+            "lessonTime": "07:27"
+          }
+        ]
+      },
+      {
+        "moduleName": "Writing a Complete Program: Guess the Number",
+        "moduleLectureCount": "1 lecture • 12min",
+        "lessons": [
+          {
+            "lessonName": "Writing a \"Guess the Number\" Program",
+            "lessonTime": "12:09"
+          }
+        ]
+      },
+      {
+        "moduleName": "Lists",
+        "moduleLectureCount": "4 lectures • 49min",
+        "lessons": [
+          {
+            "lessonName": "The List Data Type",
+            "lessonTime": "13:07"
+          }
+        ]
+      },
+      {
+        "moduleName": "Dictionaries",
+        "moduleLectureCount": "2 lectures • 30min",
+        "lessons": [
+          {
+            "lessonName": "The Dictionary Data Type",
+            "lessonTime": "19:22"
+          }
+        ]
+      },
+      {
+        "moduleName": "More About Strings",
+        "moduleLectureCount": "3 lectures • 31min",
+        "lessons": [
+          {
+            "lessonName": "Advanced String Syntax",
+            "lessonTime": "08:38"
+          }
+        ]
+      },
+      {
+        "moduleName": "Running Programs from the Command Line",
+        "moduleLectureCount": "1 lecture • 14min",
+        "lessons": [
+          {
+            "lessonName": "Launching Python Programs from Outside IDLE",
+            "lessonTime": "14:03"
+          }
+        ]
+      },
+      {
+        "moduleName": "Regular Expressions",
+        "moduleLectureCount": "7 lectures • 1hr 41min",
+        "lessons": [
+          {
+            "lessonName": "Regular Expression Basics",
+            "lessonTime": "13:10"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Python for Data Science and Machine Learning Bootcamp",
+    "image": "https://img-c.udemycdn.com/course/240x135/903744_8eb2.jpg",
+    "url": "https://www.udemy.com/course/python-for-data-science-and-machine-learning-bootcamp/?couponCode=SKILLS4SALEA",
+    "price": "$13.99",
+    "short_desc": "Learn how to use NumPy, Pandas, Seaborn , Matplotlib , Plotly , Scikit-Learn , Machine Learning, Tensorflow , and more!",
+    "long_desc": "DescriptionAre you ready to start your path to becoming a Data Scientist! \nThis comprehensive course will be your guide to learning how to use the power of Python to analyze data, create beautiful visualizations, and use powerful machine learning algorithms!\nData Scientist has been ranked the number one job on Glassdoor and the average salary of a data scientist is over $120,000 in the United States according to Indeed! Data Science is a rewarding career that allows you to solve some of the world's most interesting problems!\nThis course is designed for both beginners with some programming experience or experienced developers looking to make the jump to Data Science!\nThis comprehensive course is comparable to other Data Science bootcamps that usually cost thousands of dollars, but now you can learn all that information at a fraction of the cost! With over 100 HD video lectures and detailed code notebooks for every lecture this is one of the most comprehensive course for data science and machine learning on Udemy!\nWe'll teach you how to program with Python, how to create amazing data visualizations, and how to use Machine Learning with Python! Here a just a few of the topics we will be learning:\nProgramming with PythonNumPy with PythonUsing pandas Data Frames to solve complex tasksUse pandas to handle Excel FilesWeb scraping with pythonConnect Python to SQLUse matplotlib and seaborn for data visualizationsUse plotly for interactive visualizationsMachine Learning with SciKit Learn, including:Linear RegressionK Nearest NeighborsK Means ClusteringDecision TreesRandom ForestsNatural Language ProcessingNeural Nets and Deep LearningSupport Vector Machinesand much, much more!\nEnroll in the course and become a data scientist today!\nWho this course is for:This course is meant for people with at least some programming experienceShow moreShow less",
+    "user_rating": "4.6",
+    "user_rating_count": "(145,129 ratings)",
+    "language": "English",
+    "total_enrolled": "Rating: 4.6 out of 54.6 (145,129 ratings)726,405 students",
+    "vendor": "Udemy",
+    "prerequisites": [
+      "Some programming experience",
+      "Admin permissions to download files"
+    ],
+    "level": "N/A",
+    "time_to_complete": "N/A",
+    "category": "Computer Science",
+    "keyword": "Algorithms",
+    "provided_by": "Jose Portilla, Pierian Training",
+    "modules": [
+      {
+        "moduleName": "Course Introduction",
+        "moduleLectureCount": "3 lectures • 7min",
+        "lessons": [
+          {
+            "lessonName": "Introduction to the Course",
+            "lessonTime": "03:33"
+          }
+        ]
+      },
+      {
+        "moduleName": "Environment Set-Up",
+        "moduleLectureCount": "1 lecture • 11min",
+        "lessons": [
+          {
+            "lessonName": "Python Environment Setup",
+            "lessonTime": "11:14"
+          }
+        ]
+      },
+      {
+        "moduleName": "Jupyter Overview",
+        "moduleLectureCount": "3 lectures • 24min",
+        "lessons": [
+          {
+            "lessonName": "Updates to Notebook Zip",
+            "lessonTime": "00:09"
+          }
+        ]
+      },
+      {
+        "moduleName": "Python Crash Course",
+        "moduleLectureCount": "8 lectures • 1hr 24min",
+        "lessons": [
+          {
+            "lessonName": "Welcome to the Python Crash Course Section!",
+            "lessonTime": "00:17"
+          }
+        ]
+      },
+      {
+        "moduleName": "Python for Data Analysis - NumPy",
+        "moduleLectureCount": "8 lectures • 1hr 4min",
+        "lessons": [
+          {
+            "lessonName": "Welcome to the NumPy Section!",
+            "lessonTime": "00:10"
+          }
+        ]
+      },
+      {
+        "moduleName": "Python for Data Analysis - Pandas",
+        "moduleLectureCount": "11 lectures • 1hr 43min",
+        "lessons": [
+          {
+            "lessonName": "Welcome to the Pandas Section!",
+            "lessonTime": "00:14"
+          }
+        ]
+      },
+      {
+        "moduleName": "Python for Data Analysis - Pandas Exercises",
+        "moduleLectureCount": "5 lectures • 35min",
+        "lessons": [
+          {
+            "lessonName": "Note on SF Salary Exercise",
+            "lessonTime": "00:22"
+          }
+        ]
+      },
+      {
+        "moduleName": "Python for Data Visualization - Matplotlib",
+        "moduleLectureCount": "7 lectures • 1hr",
+        "lessons": [
+          {
+            "lessonName": "Welcome to the Data Visualization Section!",
+            "lessonTime": "00:22"
+          }
+        ]
+      },
+      {
+        "moduleName": "Python for Data Visualization - Seaborn",
+        "moduleLectureCount": "9 lectures • 1hr 22min",
+        "lessons": [
+          {
+            "lessonName": "Introduction to Seaborn",
+            "lessonTime": "02:58"
+          }
+        ]
+      },
+      {
+        "moduleName": "Python for Data Visualization - Pandas Built-in Data Visualization",
+        "moduleLectureCount": "3 lectures • 24min",
+        "lessons": [
+          {
+            "lessonName": "Pandas Built-in Data Visualization",
+            "lessonTime": "13:27"
+          }
+        ]
+      }
+    ]
   }
 ]
