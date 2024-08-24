@@ -23,6 +23,28 @@ const saveDataInChunks = (data, category, item, chunkSize = 500) => {
   }
 };
 
+const savePageData = (pageData, category, item, currentPage, saveCheckpoint, loadCheckpoint) => {
+  const checkpoint = loadCheckpoint(category, item);
+  const chunkLimit = 500;
+  const chunk = checkpoint?.chunk || 1;
+  ensureDirectoryExists('output');
+  const fileName = path.join('output', `${category}_${item}_chunk_${chunk}.json`);
+  let existingData = [];
+  const fileRawData = fs.readFileSync(fileName);
+  if (fileRawData) {
+    existingData = JSON.parse(fileRawData);
+  }
+  if (existingData.length + pageData.length > chunkLimit) {
+    const newFileName = path.join('output', `${category}_${item}_chunk_${chunk+1}.json`);
+    fs.writeFileSync(newFileName, JSON.stringify(pageData, null, 2));
+    saveCheckpoint(category, item, currentPage, chunk+1, false);
+  } else {
+    const combinedData = [...existingData, ...pageData];
+    fs.writeFileSync(fileName, JSON.stringify(combinedData, null, 2));
+    saveCheckpoint(category, item, currentPage, chunk, false);
+  }
+}
+
 const scrapeCourseData = async (page, course, category, item) => {
   try {
     await page.goto(course.link, { waitUntil: 'load', timeout: 60000 });
@@ -78,7 +100,7 @@ const scrapeCourseData = async (page, course, category, item) => {
   }
 };
 
-const dataFetcher = async (item, category, startPage = 1, chunk=0, saveCheckpoint) => {
+const dataFetcher = async (item, category, startPage = 1, chunk=1, saveCheckpoint, loadCheckpoint) => {
   let currentPage = startPage;
   try {
     const browser = await puppeteerExtra.launch({ headless: false });
@@ -95,6 +117,7 @@ const dataFetcher = async (item, category, startPage = 1, chunk=0, saveCheckpoin
 
     while (hasNextPage) {
       console.log(`Scraping page ${currentPage}...`);
+      let pageData = [];
 
       let courseLinks = await page.$$eval('.course-card-module--container--3oS-F', (cards) => {
         if (cards.length > 0) {
@@ -119,7 +142,12 @@ const dataFetcher = async (item, category, startPage = 1, chunk=0, saveCheckpoin
       });
 
       console.log(`Found ${courseLinks.length} items on page ${currentPage}`);
-      if (courseLinks.length === 0) break;
+      if (courseLinks.length === 0){
+        hasNextPage = false;
+        saveCheckpoint(category, item, currentPage, chunk, true);
+        console.log(`No more courses found for ${category} - ${item}. Exiting...`);
+        break;
+      };
 
       for (const course of courseLinks) {
         console.log(`Scraping course: ${course.link}`);
@@ -127,15 +155,15 @@ const dataFetcher = async (item, category, startPage = 1, chunk=0, saveCheckpoin
         const courseData = await scrapeCourseData(page, course, category, item);
 
         if (courseData) {
-          allCourseData.push(courseData);
+          pageData.push(courseData);
         }
 
         await new Promise(resolve => setTimeout(resolve, Math.floor(Math.random() * 5000) + 5000)); // Random delay between scrapes
       }
 
-      saveDataInChunks(allCourseData, category, item);
-      saveCheckpoint(category, item, currentPage);
-
+      //saveDataInChunks(allCourseData, category, item, chunk);
+      //saveCheckpoint(category, item, currentPage);
+      savePageData(pageData, category, item, currentPage, saveCheckpoint, loadCheckpoint);
       try {
         const nextPageUrl = `https://www.udemy.com/courses/search/?p=${currentPage}&q=${urlFriendlyString(item)}`
         //const nextPageUrl = `https://www.udemy.com/courses/search/?kw=${urlFriendlyString(item)}&p=${currentPage}&src=sac`;
@@ -152,7 +180,7 @@ const dataFetcher = async (item, category, startPage = 1, chunk=0, saveCheckpoin
     await browser.close();
   } catch (error) {
     console.error('Error in dataFetcher:', error);
-    saveCheckpoint(category, item, currentPage);
+    saveCheckpoint(category, item, currentPage, chunk, false);
   }
 };
 

@@ -76,8 +76,8 @@ const loadCheckpoint = (category, item) => {
   }
 };
 
-const saveCheckpoint = (category, item, currentPage, chunk) => {
-  const checkpoint = { category, item, currentPage, chunk };
+const saveCheckpoint = (category, item, currentPage, chunk, isCompleted) => {
+  const checkpoint = { category, item, currentPage, chunk, isCompleted };
   const filePath = path.join(checkpointDir, `${category}_${item}.json`);
   fs.writeFileSync(filePath, JSON.stringify(checkpoint, null, 2));
 };
@@ -93,10 +93,15 @@ for (const category in keywords) {
     console.log(`  Item: ${item}`); // Print each item in the array
 
     const checkpoint = loadCheckpoint(category, item);
+
     if (checkpoint) {
-      queue.add(() => dataFetcher(item, category, checkpoint.currentPage, checkpoint.chunk, saveCheckpoint));
+      if(checkpoint?.isCompleted){
+        console.log(`${category} - ${item} is already completed!`)
+      }else{
+        queue.add(() => dataFetcher(item, category, checkpoint.currentPage, checkpoint.chunk, saveCheckpoint, loadCheckpoint));
+      }
     } else {
-      queue.add(() => dataFetcher(item, category, 1, 0, saveCheckpoint)); // Start from page 1 and chunk 0
+      queue.add(() => dataFetcher(item, category, 1, 1, saveCheckpoint, loadCheckpoint)); // Start from page 1 and chunk 0
     }
   }
 }
