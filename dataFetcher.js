@@ -13,7 +13,7 @@ const ensureDirectoryExists = (dir) => {
   }
 };
 
-const saveDataInChunks = (data, category, item, chunkSize = 500) => {
+/* const saveDataInChunks = (data, category, item, chunkSize = 500) => {
   ensureDirectoryExists('output');
   const totalChunks = Math.ceil(data.length / chunkSize);
   for (let i = 0; i < totalChunks; i++) {
@@ -21,7 +21,7 @@ const saveDataInChunks = (data, category, item, chunkSize = 500) => {
     const fileName = path.join('output', `${category}_${item}_chunk_${i + 1}.json`);
     fs.writeFileSync(fileName, JSON.stringify(chunk, null, 2));
   }
-};
+}; */
 
 const savePageData = (pageData, category, item, currentPage, saveCheckpoint, loadCheckpoint) => {
   const checkpoint = loadCheckpoint(category, item);

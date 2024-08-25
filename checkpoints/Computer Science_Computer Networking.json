@@ -1,5 +1,7 @@
 {
   "category": "Computer Science",
   "item": "Computer Networking",
-  "currentPage": 18
+  "currentPage": 18,
+  "chunk": 1,
+  "isCompleted": false
 }
