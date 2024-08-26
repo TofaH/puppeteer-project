@@ -10,18 +10,9 @@ const urlFriendlyString = (originalString) => encodeURIComponent(originalString)
 const ensureDirectoryExists = (dir) => {
   if (!fs.existsSync(dir)) {
     fs.mkdirSync(dir, { recursive: true });
+    console.log(`Directory created: ${dir}`);
   }
 };
-
-/* const saveDataInChunks = (data, category, item, chunkSize = 500) => {
-  ensureDirectoryExists('output');
-  const totalChunks = Math.ceil(data.length / chunkSize);
-  for (let i = 0; i < totalChunks; i++) {
-    const chunk = data.slice(i * chunkSize, (i + 1) * chunkSize);
-    const fileName = path.join('output', `${category}_${item}_chunk_${i + 1}.json`);
-    fs.writeFileSync(fileName, JSON.stringify(chunk, null, 2));
-  }
-}; */
 
 const savePageData = (pageData, category, item, currentPage, saveCheckpoint, loadCheckpoint) => {
   const checkpoint = loadCheckpoint(category, item);
@@ -30,25 +21,49 @@ const savePageData = (pageData, category, item, currentPage, saveCheckpoint, loa
   ensureDirectoryExists('output');
   const fileName = path.join('output', `${category}_${item}_chunk_${chunk}.json`);
   let existingData = [];
-  const fileRawData = fs.readFileSync(fileName);
-  if (fileRawData) {
-    existingData = JSON.parse(fileRawData);
+  try {
+    const fileRawData = fs.readFileSync(fileName);
+    if (fileRawData) {
+      existingData = JSON.parse(fileRawData);
+    }
+  } catch (err) {
+    if (err.code !== 'ENOENT') throw err; // Ignore if file does not exist
   }
+
   if (existingData.length + pageData.length > chunkLimit) {
-    const newFileName = path.join('output', `${category}_${item}_chunk_${chunk+1}.json`);
-    fs.writeFileSync(newFileName, JSON.stringify(pageData, null, 2));
-    saveCheckpoint(category, item, currentPage, chunk+1, false);
+    const remainingData = chunkLimit - existingData.length;
+    const slicedData = pageData.slice(0, remainingData); // Remove excess data to fit within chunk limit
+    const newData = pageData.slice(remainingData);
+    const nextChunk = chunk + 1;
+    
+    const nextFileName = `output/${category}_${item}_chunk_${nextChunk}.json`;
+    // commplete the earlier chunk data
+    fs.writeFileSync(fileName, JSON.stringify([...existingData, ...slicedData], null, 2));
+    //make sure the new chunkfile is created
+    fs.mkdir(nextFileName, { recursive: true }, (err) => {
+      if (err) throw err;
+    });
+    // save the next chunk data
+    fs.writeFileSync(nextFileName, JSON.stringify(newData, null, 2), (err) => {
+      if (err) throw err;
+    });
+    // update the checkpoint file
+    saveCheckpoint(category, item, currentPage, nextChunk, false);
   } else {
     const combinedData = [...existingData, ...pageData];
-    fs.writeFileSync(fileName, JSON.stringify(combinedData, null, 2));
+    // update the chunk file
+    fs.writeFileSync(fileName, JSON.stringify(combinedData, null, 2, (err, data)  => {
+      if (err) throw err;
+    }));
+    // update the checkpoint file
     saveCheckpoint(category, item, currentPage, chunk, false);
   }
 }
 
 const scrapeCourseData = async (page, course, category, item) => {
   try {
-    await page.goto(course.link, { waitUntil: 'load', timeout: 60000 });
-    await new Promise(resolve => setTimeout(resolve, 6000)); // Allow time for the page to load fully
+    await page.goto(course.link, { waitUntil: 'load', timeout: 0 });
+    await new Promise(resolve => setTimeout(resolve, 8000)); // Allow time for the page to load fully
 
     const courseData = await page.evaluate((course, category, item) => {
       const keyword = item;
@@ -100,20 +115,19 @@ const scrapeCourseData = async (page, course, category, item) => {
   }
 };
 
-const dataFetcher = async (item, category, startPage = 1, chunk=1, saveCheckpoint, loadCheckpoint) => {
+const dataFetcher = async (item, category, startPage = 1, chunk=1, saveCheckpoint, loadCheckpoint, browser) => {
   let currentPage = startPage;
   try {
-    const browser = await puppeteerExtra.launch({ headless: false });
+    //const browser = await puppeteerExtra.launch({ headless: false });
     const page = await browser.newPage();
     await page.goto('https://www.udemy.com/', { waitUntil: 'load', timeout: 0 });
     await page.setViewport({ width: 1080, height: 1024 });
     await page.type('input[type=text]', item, { delay: 100 });
     await page.keyboard.press('Enter');
     console.log('Searching for courses...');
-    await page.waitForNavigation({ waitUntil: 'networkidle0', timeout: 60000 });
+    await page.waitForNavigation({ waitUntil: 'networkidle0', timeout: 0 });
 
     let hasNextPage = true;
-    let allCourseData = [];
 
     while (hasNextPage) {
       console.log(`Scraping page ${currentPage}...`);
@@ -145,6 +159,7 @@ const dataFetcher = async (item, category, startPage = 1, chunk=1, saveCheckpoin
       if (courseLinks.length === 0){
         hasNextPage = false;
         saveCheckpoint(category, item, currentPage, chunk, true);
+        page.close();
         console.log(`No more courses found for ${category} - ${item}. Exiting...`);
         break;
       };
@@ -167,7 +182,7 @@ const dataFetcher = async (item, category, startPage = 1, chunk=1, saveCheckpoin
       try {
         const nextPageUrl = `https://www.udemy.com/courses/search/?p=${currentPage}&q=${urlFriendlyString(item)}`
         //const nextPageUrl = `https://www.udemy.com/courses/search/?kw=${urlFriendlyString(item)}&p=${currentPage}&src=sac`;
-        await page.goto(nextPageUrl, { waitUntil: 'load', timeout: 100000 });
+        await page.goto(nextPageUrl, { waitUntil: 'load', timeout: 0 });
         await new Promise(resolve => setTimeout(resolve, 60000)); // Wait to ensure the page is fully loaded
         currentPage++;
         console.log('Current page URL:', page.url());
@@ -177,7 +192,7 @@ const dataFetcher = async (item, category, startPage = 1, chunk=1, saveCheckpoin
       }
     }
 
-    await browser.close();
+    await page.close();
   } catch (error) {
     console.error('Error in dataFetcher:', error);
     saveCheckpoint(category, item, currentPage, chunk, false);

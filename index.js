@@ -57,6 +57,7 @@ import PQueue from 'p-queue';
 import dataFetcher from './dataFetcher.js';
 import fs from 'fs';
 import path from 'path';
+import puppeteerExtra from 'puppeteer-extra';
 
 const concurrencyLimit = 5;
 const queue = new PQueue({ concurrency: concurrencyLimit });
@@ -86,6 +87,8 @@ if (!fs.existsSync(checkpointDir)) {
   fs.mkdirSync(checkpointDir);
 }
 
+const browser = puppeteerExtra.launch({ headless: false });
+
 for (const category in keywords) {
   console.log(`Category: ${category}`); // Print the category name
 
@@ -98,10 +101,10 @@ for (const category in keywords) {
       if(checkpoint?.isCompleted){
         console.log(`${category} - ${item} is already completed!`)
       }else{
-        queue.add(() => dataFetcher(item, category, checkpoint.currentPage, checkpoint.chunk, saveCheckpoint, loadCheckpoint));
+        queue.add(() => dataFetcher(item, category, checkpoint.currentPage, checkpoint.chunk, saveCheckpoint, loadCheckpoint, browser));
       }
     } else {
-      queue.add(() => dataFetcher(item, category, 1, 1, saveCheckpoint, loadCheckpoint)); // Start from page 1 and chunk 0
+      queue.add(() => dataFetcher(item, category, 1, 1, saveCheckpoint, loadCheckpoint, browser)); // Start from page 1 and chunk 0
     }
   }
 }
