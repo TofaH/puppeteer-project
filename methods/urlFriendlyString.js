@@ -1,0 +1,1 @@
+export const urlFriendlyString = (originalString) => encodeURIComponent(originalString).replace(/%20/g, "+").toLowerCase();
