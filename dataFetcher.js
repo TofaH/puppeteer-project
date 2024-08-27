@@ -1,122 +1,47 @@
 import puppeteerExtra from 'puppeteer-extra';
 import StealthPlugin from 'puppeteer-extra-plugin-stealth';
-import fs from 'fs';
-import path from 'path';
+import { scrapeCourseData } from './methods/scrapeCourseData.js';
+import { savePageData } from './methods/savePageData.js';
+import { urlFriendlyString } from './methods/urlFriendlyString.js';
+import { saveCheckpoint } from './methods/checkpointOperations.js';
 
 puppeteerExtra.use(StealthPlugin());
 
-const urlFriendlyString = (originalString) => encodeURIComponent(originalString).replace(/%20/g, "+").toLowerCase();
+const dataFetcher = async (item, category, startPage, chunk=1, browser) => {
+  let currentPage = startPage+1;
 
-const ensureDirectoryExists = (dir) => {
-  if (!fs.existsSync(dir)) {
-    fs.mkdirSync(dir, { recursive: true });
-  }
-};
-
-/* const saveDataInChunks = (data, category, item, chunkSize = 500) => {
-  ensureDirectoryExists('output');
-  const totalChunks = Math.ceil(data.length / chunkSize);
-  for (let i = 0; i < totalChunks; i++) {
-    const chunk = data.slice(i * chunkSize, (i + 1) * chunkSize);
-    const fileName = path.join('output', `${category}_${item}_chunk_${i + 1}.json`);
-    fs.writeFileSync(fileName, JSON.stringify(chunk, null, 2));
-  }
-}; */
-
-const savePageData = (pageData, category, item, currentPage, saveCheckpoint, loadCheckpoint) => {
-  const checkpoint = loadCheckpoint(category, item);
-  const chunkLimit = 500;
-  const chunk = checkpoint?.chunk || 1;
-  ensureDirectoryExists('output');
-  const fileName = path.join('output', `${category}_${item}_chunk_${chunk}.json`);
-  let existingData = [];
-  const fileRawData = fs.readFileSync(fileName);
-  if (fileRawData) {
-    existingData = JSON.parse(fileRawData);
-  }
-  if (existingData.length + pageData.length > chunkLimit) {
-    const newFileName = path.join('output', `${category}_${item}_chunk_${chunk+1}.json`);
-    fs.writeFileSync(newFileName, JSON.stringify(pageData, null, 2));
-    saveCheckpoint(category, item, currentPage, chunk+1, false);
-  } else {
-    const combinedData = [...existingData, ...pageData];
-    fs.writeFileSync(fileName, JSON.stringify(combinedData, null, 2));
-    saveCheckpoint(category, item, currentPage, chunk, false);
-  }
-}
-
-const scrapeCourseData = async (page, course, category, item) => {
   try {
-    await page.goto(course.link, { waitUntil: 'load', timeout: 60000 });
-    await new Promise(resolve => setTimeout(resolve, 6000)); // Allow time for the page to load fully
-
-    const courseData = await page.evaluate((course, category, item) => {
-      const keyword = item;
-      const getTextContent = (selector) => document.querySelector(selector)?.textContent.trim() || null;
-      const getSrc = (selector) => document.querySelector(selector)?.src || null;
-
-      const name = getTextContent('h1.clp-lead__title');
-      const image = getSrc('#main-content-anchor img');
-      const url = window.location.href;
-      const price = course?.price || 'N/A';
-      const short_desc = getTextContent('.clp-lead__headline');
-      const long_desc = getTextContent('.styles--description--AfVWV');
-      const user_rating = getTextContent('.star-rating-module--rating-number--2-qA2');
-      const user_rating_count = getTextContent('.clp-lead__element-item--row > a > span:nth-child(2)');
-      const language = getTextContent('.clp-lead__locale');
-      const total_enrolled = getTextContent('.clp-lead__badge-ratings-enrollment > div');
-      const vendor = 'Udemy';
-      const level = course?.level || 'N/A';
-      const prerequisites = Array.from(document.querySelectorAll('h2.ud-heading-xl.requirements--title--eo3-L + ul li div.ud-block-list-item-content')).map(el => el.textContent.trim());
-      const time_to_complete = course?.estimatedTimeElement || 'N/A';
-      const provided_by = course?.providedByElement || 'N/A';
-
-      const modules = Array.from(document.querySelectorAll('.accordion-panel-module--panel--Eb0it')).map(el => {
-        const moduleName = el.querySelector('.section--section-title-container--Hd9vI > button > span > span')?.textContent || 'No module name';
-        const moduleLectureCount = el.querySelector('.section--section-title-container--Hd9vI > button > span > span.section--section-content--2mUJ7')?.textContent || 'No lecture count';
-        const lessons = Array.from(el.querySelectorAll('.accordion-panel-module--content--0dD7R')).map(lesson => {
-          const lessonName = lesson.querySelector('.section--item-title--EWIuI')?.textContent || '';
-          const lessonTime = lesson.querySelector('.section--item-content-summary--Aq9em')?.textContent || '';
-          return {
-            lessonName,
-            lessonTime
-          };
-        });
-        return { moduleName, moduleLectureCount, lessons };
-      });
-
-      return {
-        name, image, url, price, short_desc, long_desc, user_rating, user_rating_count, language,
-        total_enrolled, vendor, prerequisites, level, time_to_complete, category, keyword, provided_by, modules
-      };
-    }, course, category, item);
-
-    console.log(courseData);
-    return courseData;
-
-  } catch (error) {
-    console.error('Error scraping course data:', error);
-    return null;
-  }
-};
-
-const dataFetcher = async (item, category, startPage = 1, chunk=1, saveCheckpoint, loadCheckpoint) => {
-  let currentPage = startPage;
-  try {
-    const browser = await puppeteerExtra.launch({ headless: false });
     const page = await browser.newPage();
-    await page.goto('https://www.udemy.com/', { waitUntil: 'load', timeout: 0 });
     await page.setViewport({ width: 1080, height: 1024 });
-    await page.type('input[type=text]', item, { delay: 100 });
-    await page.keyboard.press('Enter');
-    console.log('Searching for courses...');
-    await page.waitForNavigation({ waitUntil: 'networkidle0', timeout: 60000 });
+    /* console.log('Current page URL:', page.url());
+
+    if(currentPage === startPage === 1){
+      await page.goto('https://www.udemy.com/', { waitUntil: 'load', timeout: 0 });
+      await page.type('input[type=text]', item, { delay: 100 });
+      await page.keyboard.press('Enter');
+      console.log('Searching for courses...');
+      await page.waitForNavigation({ waitUntil: 'networkidle0', timeout: 0 });
+    }else{
+      const nextPageUrl = `https://www.udemy.com/courses/search/?p=${currentPage}&q=${urlFriendlyString(item)}`;
+      await page.goto(nextPageUrl, { waitUntil: 'load', timeout: 0 });
+      await new Promise(resolve => setTimeout(resolve, 60000)); // Wait to ensure the page is fully loaded
+      console.log('Current page URL:', page.url());
+    } */
 
     let hasNextPage = true;
-    let allCourseData = [];
 
     while (hasNextPage) {
-      console.log(`Scraping page ${currentPage}...`);
+      try {
+        const url = `https://www.udemy.com/courses/search/?p=${currentPage}&q=${urlFriendlyString(item)}`
+        await page.goto(url, { waitUntil: 'load', timeout: 0 });
+        await new Promise(resolve => setTimeout(resolve, 60000)); // Wait to ensure the page is fully loaded
+      } catch (error) {
+        console.error('Error navigating to the page:', error);
+        hasNextPage = false;
+        break;
+      }
+
+      console.log(`CATEGORY: ${category} - KEY: ${item} ===> Scraping page ${currentPage}... `);
       let pageData = [];
 
       let courseLinks = await page.$$eval('.course-card-module--container--3oS-F', (cards) => {
@@ -141,10 +66,11 @@ const dataFetcher = async (item, category, startPage = 1, chunk=1, saveCheckpoin
         }
       });
 
-      console.log(`Found ${courseLinks.length} items on page ${currentPage}`);
+      console.log(`CATEGORY:${category} KEYWORD: ${item} ===> Found ${courseLinks.length} items on page ${currentPage}`);
       if (courseLinks.length === 0){
         hasNextPage = false;
         saveCheckpoint(category, item, currentPage, chunk, true);
+        page.close();
         console.log(`No more courses found for ${category} - ${item}. Exiting...`);
         break;
       };
@@ -160,24 +86,11 @@ const dataFetcher = async (item, category, startPage = 1, chunk=1, saveCheckpoin
 
         await new Promise(resolve => setTimeout(resolve, Math.floor(Math.random() * 5000) + 5000)); // Random delay between scrapes
       }
-
-      //saveDataInChunks(allCourseData, category, item, chunk);
-      //saveCheckpoint(category, item, currentPage);
-      savePageData(pageData, category, item, currentPage, saveCheckpoint, loadCheckpoint);
-      try {
-        const nextPageUrl = `https://www.udemy.com/courses/search/?p=${currentPage}&q=${urlFriendlyString(item)}`
-        //const nextPageUrl = `https://www.udemy.com/courses/search/?kw=${urlFriendlyString(item)}&p=${currentPage}&src=sac`;
-        await page.goto(nextPageUrl, { waitUntil: 'load', timeout: 100000 });
-        await new Promise(resolve => setTimeout(resolve, 60000)); // Wait to ensure the page is fully loaded
-        currentPage++;
-        console.log('Current page URL:', page.url());
-      } catch (error) {
-        console.error('Error navigating to the next page:', error);
-        hasNextPage = false;
-      }
+      
+      savePageData(pageData, category, item, currentPage);
+      currentPage++;
     }
-
-    await browser.close();
+    await page.close();
   } catch (error) {
     console.error('Error in dataFetcher:', error);
     saveCheckpoint(category, item, currentPage, chunk, false);
