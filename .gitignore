@@ -16,4 +16,4 @@ Thumbs.db
 dist/
 build/
 output/
-checkpoint.json
+checkpoints/
